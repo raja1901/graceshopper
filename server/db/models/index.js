@@ -5,5 +5,6 @@ Pizza.belongsToMany(User, {through: 'order'})
 User.belongsToMany(Pizza, {through: 'order'})
 
 module.exports = {
-  User
+  User,
+  Pizza
 }
