@@ -24,7 +24,7 @@ async function seed() {
       name: 'Pepperoni',
       size: 'Small',
       crust: 'Normal',
-      imageUrl: 'https://www.cicis.com/media/1138/pizza_trad_pepperoni.png',
+      imageUrl: 'https://www.cicis.com/media/1139/pizza_trad_pepperoni_sm.png',
       price: 10.95
     }),
     Pizza.create({

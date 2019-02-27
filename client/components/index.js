@@ -6,5 +6,5 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
-export {PizzaList} from './PizzaList'
-export {SinglePizza} from './SinglePizza'
+export {default as PizzaList} from './PizzaList'
+export {default as SinglePizza} from './SinglePizza'
