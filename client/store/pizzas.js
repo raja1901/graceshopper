@@ -1,5 +1,4 @@
 import axios from 'axios'
-import history from '../history'
 
 /**
  * ACTION TYPES
@@ -16,7 +15,7 @@ const initialState = {
 /**
  * ACTION CREATORS
  */
-const gotPizzas = () => ({type: GET_PIZZAS, payload})
+const gotPizzas = payload => ({type: GET_PIZZAS, payload})
 
 /**
  * THUNK CREATORS
