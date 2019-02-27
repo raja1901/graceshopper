@@ -1,5 +1,5 @@
 const User = require('./user')
-const Pizza = require('/pizza')
+const Pizza = require('./pizza')
 
 Pizza.belongsToMany(User, {through: 'order'})
 User.belongsToMany(Pizza, {through: 'order'})

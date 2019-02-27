@@ -19,7 +19,7 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  phoneNumber: {
+  phone: {
     type: Sequelize.STRING,
     allowNull: false
   },
