@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Pizza} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -17,6 +17,59 @@ async function seed() {
       password: '123'
     })
     // User.create({email: 'murphy@email.com', password: '123'})
+  ])
+
+  const pizzas = await Promise.all([
+    Pizza.create({
+      name: 'Pepperoni',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1138/pizza_trad_pepperoni.png',
+      price: 10.95
+    }),
+    Pizza.create({
+      name: 'Hawaiian',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl:
+        'https://www.cicis.com/media/1158/pizza_adven_hampineapple_sm.png',
+      price: 10.95
+    }),
+    Pizza.create({
+      name: 'Cheese',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1177/pizza_trad_cheese_sm.png',
+      price: 9.95
+    }),
+    Pizza.create({
+      name: 'Supreme',
+      size: 'Medium',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1172/pizza_trad_supreme_sm.png',
+      price: 6.95
+    }),
+    Pizza.create({
+      name: 'Meat Lovers',
+      size: 'Medium',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1175/pizza_trad_meateater_sm.png',
+      price: 11.95
+    }),
+    Pizza.create({
+      name: 'Mac & Cheese',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1160/pizza_adven_maccheese_sm.png',
+      price: 9.95
+    }),
+    Pizza.create({
+      name: 'Vegetarian',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1173/pizza_trad_veggie_sm.png',
+      price: 6.95
+    })
   ])
 
   console.log(`seeded ${users.length} users`)
