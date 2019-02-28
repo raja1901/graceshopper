@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
     case GET_ORDERS:
       return action.payload
     case ADD_ORDER:
-      return state.push(action.payload)
+      return [...state, action.payload]
     default:
       return state
   }

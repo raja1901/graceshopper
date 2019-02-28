@@ -1,17 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getOrders} from '../store/orders'
+import {getCartId} from '../store/carts'
 import {SinglePizza} from './index'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.fetchOrders()
+    this.props.fetchOrders(this.props.activeCart.id)
   }
   render() {
     return (
       <div>
         {this.props.orders.map(order => {
-          return <SinglePizza key={order.id} pizza={order} />
+          return (
+            <div key={order.id}>
+              <SinglePizza pizza={order.pizza} />
+              <h2>Quantity: {order.qty}</h2>
+            </div>
+          )
         })}
       </div>
     )
@@ -19,11 +25,13 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  orders: state.orders
+  orders: state.orders,
+  cart: state.carts.activeCart
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchOrders: () => dispatch(getOrders())
+  fetchOrders: cartId => dispatch(getOrders(cartId)),
+  fetchCartId: () => dispatch(getCartId())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
