@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getOrders} from '../store/orders'
-import {getCartId} from '../store/carts'
+
+import {getActiveCart} from '../store/carts'
+
 import {SinglePizza} from './index'
 
 class Cart extends Component {
@@ -31,7 +33,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchOrders: cartId => dispatch(getOrders(cartId)),
-  fetchCartId: () => dispatch(getCartId())
+  getActiveCart: () => dispatch(getCartId())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
