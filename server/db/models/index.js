@@ -12,6 +12,9 @@ Order.belongsTo(User)
 Cart.hasMany(Order)
 Order.belongsTo(Cart)
 
+User.hasMany(Cart)
+Cart.belongsTo(User)
+
 module.exports = {
   User,
   Pizza,

@@ -78,7 +78,12 @@ async function seed() {
       price: 6.95
     }),
     Cart.create({
-      isOrdered: false
+      isOrdered: false,
+      userId: 1
+    }),
+    Cart.create({
+      isOrdered: true,
+      userId: 1
     }),
     Order.create({
       qty: 5,
