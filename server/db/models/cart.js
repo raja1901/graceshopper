@@ -3,7 +3,8 @@ const db = require('../db')
 
 const Cart = db.define('cart', {
   isOrdered: {
-    type: Sequelize.BOOLEAN
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
