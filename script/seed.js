@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Pizza} = require('../server/db/models')
+const {User, Pizza, Order, Cart} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -69,6 +69,28 @@ async function seed() {
       crust: 'Normal',
       imageUrl: 'https://www.cicis.com/media/1173/pizza_trad_veggie_sm.png',
       price: 6.95
+    }),
+    Pizza.create({
+      name: 'Bianca',
+      size: 'Small',
+      crust: 'Normal',
+      imageUrl: 'https://www.cicis.com/media/1173/pizza_trad_veggie_sm.png',
+      price: 6.95
+    }),
+    Cart.create({
+      isOrdered: false
+    }),
+    Order.create({
+      qty: 5,
+      pizzaId: 1,
+      userId: 1,
+      cartId: 1
+    }),
+    Order.create({
+      qty: 3,
+      pizzaId: 2,
+      userId: 1,
+      cartId: 1
     })
   ])
 
