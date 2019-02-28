@@ -7,8 +7,9 @@ import {getActiveCart} from '../store/carts'
 import {SinglePizza} from './index'
 
 class Cart extends Component {
-  componentDidMount() {
-    this.props.fetchOrders(this.props.activeCart.id)
+  async componentDidMount() {
+    await this.props.fetchActiveCart()
+    this.props.fetchOrders(this.props.cart.id)
   }
   render() {
     return (
@@ -33,7 +34,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchOrders: cartId => dispatch(getOrders(cartId)),
-  getActiveCart: () => dispatch(getCartId())
+  fetchActiveCart: () => dispatch(getActiveCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
