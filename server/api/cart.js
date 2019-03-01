@@ -1,19 +1,21 @@
 const router = require('express').Router()
 const {Cart} = require('../db/models')
 
+// getting users cart or create it for logged in user
 router.get('/', async (req, res, next) => {
-  const [cart] = await Cart.findAll({
+  const [cart] = await Cart.findOrCreate({
     where: {
       isOrdered: false,
-      userId: 1
+      userId: req.user.id
     }
   })
   res.json(cart)
 })
 
+// create new cart for user
 router.post('/', async (req, res, next) => {
   try {
-    const userId = 1
+    const userId = req.user.id
     const cart = await Cart.create({userId})
     res.json(cart)
   } catch (error) {
@@ -21,6 +23,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+//toggling cart to "ordered"
 router.put('/:cartId/checkout', async (req, res, next) => {
   try {
     const [numberOfAffectedRows, affectedRows] = await Cart.update(

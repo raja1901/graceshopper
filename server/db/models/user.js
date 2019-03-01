@@ -3,10 +3,10 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
+  // name: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
   email: {
     type: Sequelize.STRING,
     unique: true,
@@ -15,17 +15,17 @@ const User = db.define('user', {
       isEmail: true
     }
   },
-  address: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  phone: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  favorite: {
-    type: Sequelize.STRING
-  },
+  // address: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  // phone: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false
+  // },
+  // favorite: {
+  //   type: Sequelize.STRING
+  // },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
