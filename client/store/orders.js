@@ -25,9 +25,12 @@ export const getOrders = cartId => async dispatch => {
   }
 }
 
-export const createOrder = (cartId, pizza) => async dispatch => {
+export const createOrder = (cartId, pizzaId) => async dispatch => {
   try {
-    const {data} = await axios.post(`/api/orders/${cartId}`, pizza)
+    console.log('Step 2: add to cart is pressed')
+    console.log('PIZZA ID IN THUNK:', pizzaId)
+    const {data} = await axios.post(`/api/orders/${cartId}`, {pizzaId})
+    console.log('DATA IN THUNK:', data)
     dispatch(addOrder(data))
   } catch (err) {
     console.error(err)

@@ -21,6 +21,7 @@ const gotPizzas = payload => ({type: GET_PIZZAS, payload})
  * THUNK CREATORS
  */
 export const getPizzas = () => async dispatch => {
+  console.log('Step 1: get all pizzas')
   try {
     const {data} = await axios.get('/api/pizzas')
     dispatch(gotPizzas(data))
