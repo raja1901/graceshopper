@@ -42,13 +42,24 @@ router.post('/:cartId', async (req, res, next) => {
 })
 
 // //removefromCart
-// router.post('/remove', async (req, res, next) => {
-//   try {
-//     const pizzas = await Cart.findAll()
-//     res.json(pizzas)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.delete('/:cartId', async (req, res, next) => {
+  try {
+    const userId = 1
+    const cartId = req.params.cartId
+    const pizzaId = req.body.pizzaId
+
+    const temp = await Order.findOne({where: {userId, cartId, pizzaId}})
+    if (temp.qty > 1) {
+      temp.qty = temp.qty - 1
+      temp.save()
+      res.json(temp)
+    } else {
+      await Order.destroy({where: {id: temp.id}})
+      res.status(202).end()
+    }
+  } catch (err) {
+    next(err)
+  }
+})
 
 module.exports = router
