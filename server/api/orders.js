@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Order, Pizza} = require('../db/models')
 
+//getting all order items in a cart
 router.get('/:cartId', async (req, res, next) => {
   try {
     const cartId = req.params.cartId
@@ -15,10 +16,9 @@ router.get('/:cartId', async (req, res, next) => {
 })
 
 //addTo cart
-//need to test user part on front end
 router.post('/:cartId', async (req, res, next) => {
   try {
-    const userId = 1
+    const userId = req.user.id
     const cartId = req.params.cartId
     const pizzaId = req.body.pizzaId
 
@@ -44,7 +44,7 @@ router.post('/:cartId', async (req, res, next) => {
 // //removefromCart
 router.delete('/:cartId', async (req, res, next) => {
   try {
-    const userId = 1
+    const userId = req.user.id
     const cartId = req.params.cartId
     const pizzaId = req.body.pizzaId
 
