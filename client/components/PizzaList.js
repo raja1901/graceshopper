@@ -17,7 +17,6 @@ class PizzaList extends Component {
 
   async handleClick(event, pizzaId) {
     await this.props.fetchActiveCart()
-    console.log('pizza:', pizzaId)
     this.props.addOrder(this.props.cartId, pizzaId)
   }
 
