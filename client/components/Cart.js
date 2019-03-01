@@ -14,8 +14,8 @@ class Cart extends Component {
     this.props.fetchOrders(this.props.cart.id)
   }
 
-  async handleClick(event) {
-    await this.props.finalCheckout(event, this.props.cart.id)
+  async handleClick() {
+    await this.props.finalCheckout(this.props.cart.id)
     this.props.history.push('/checkout')
   }
 
@@ -32,7 +32,7 @@ class Cart extends Component {
               </div>
             )
           })}
-          <button type="button" onClick={() => this.handleClick(event)}>
+          <button type="button" onClick={this.handleClick}>
             Checkout
           </button>
         </div>
