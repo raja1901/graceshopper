@@ -1,14 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getOrders} from '../store/orders'
-import {getActiveCart} from '../store/carts'
+import {getActiveCart, checkout} from '../store/carts'
 import {SinglePizza} from './index'
 
 class Cart extends Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
   async componentDidMount() {
     await this.props.fetchActiveCart()
     this.props.fetchOrders(this.props.cart.id)
   }
+
+  handleClick(event, cartId) {
+    this.props.finalCheckout(event, cartId)
+  }
+
   render() {
     console.log(this.props.orders)
     if (this.props.orders) {
@@ -22,6 +31,9 @@ class Cart extends Component {
               </div>
             )
           })}
+          <button type="button" onClick={() => this.handleClick(event, cartId)}>
+            Checkout
+          </button>
         </div>
       )
     } else {
@@ -37,7 +49,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchOrders: cartId => dispatch(getOrders(cartId)),
-  fetchActiveCart: () => dispatch(getActiveCart())
+  fetchActiveCart: () => dispatch(getActiveCart()),
+  finalCheckout: cartId => dispatch(checkout(cartId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
