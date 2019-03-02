@@ -44,11 +44,11 @@ router.post('/:cartId', async (req, res, next) => {
 // //removefromCart
 router.delete('/:cartId', async (req, res, next) => {
   try {
-    const userId = req.user.id
+    // const userId = req.user.id
     const cartId = req.params.cartId
     const pizzaId = req.body.pizzaId
 
-    const temp = await Order.findOne({where: {userId, cartId, pizzaId}})
+    const temp = await Order.findOne({where: {cartId, pizzaId}})
     if (temp.qty > 1) {
       temp.qty = temp.qty - 1
       temp.save()

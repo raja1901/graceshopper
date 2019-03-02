@@ -37,6 +37,17 @@ export const createOrder = (cartId, pizzaId) => async dispatch => {
   }
 }
 
+export const deleteOrder = (cartId, pizzaId) => async dispatch => {
+  try {
+    console.log('Step 2: remove from cart is pressed')
+    console.log('PIZZA ID IN THUNK:', pizzaId)
+    await axios.delete(`/api/orders/${cartId}`, {data: {pizzaId}})
+    dispatch(getOrders(cartId))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 // INITIAL STATE
 const initialState = []
 
