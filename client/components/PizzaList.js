@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getPizzas} from '../store/pizzas'
 import {SinglePizza} from './index'
-import {createOrder} from '../store/orders'
+import {createOrder, deleteOrder} from '../store/orders'
 import {getActiveCart} from '../store/carts'
 // import {withRouter} from 'react-router-dom'
 
@@ -10,6 +10,7 @@ class PizzaList extends Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
+    this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
   componentDidMount() {
     this.props.fetchPizzas()
@@ -18,6 +19,11 @@ class PizzaList extends Component {
   async handleClick(event, pizzaId) {
     await this.props.fetchActiveCart()
     this.props.addOrder(this.props.cartId, pizzaId)
+  }
+
+  async handleRemoveClick(event, pizzaId) {
+    await this.props.fetchActiveCart()
+    this.props.deleteOrder(this.props.cartId, pizzaId)
   }
 
   render() {
@@ -32,6 +38,12 @@ class PizzaList extends Component {
                 onClick={() => this.handleClick(event, pizza.id)}
               >
                 Add to Cart
+              </button>
+              <button
+                type="button"
+                onClick={() => this.handleRemoveClick(event, pizza.id)}
+              >
+                Remove from Cart
               </button>
             </div>
           )
@@ -50,6 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   addOrder: (cartId, pizzaId) => dispatch(createOrder(cartId, pizzaId)),
+  deleteOrder: (cartId, pizzaId) => dispatch(deleteOrder(cartId, pizzaId)),
   fetchPizzas: () => dispatch(getPizzas()),
   fetchActiveCart: () => dispatch(getActiveCart())
 })
