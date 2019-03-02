@@ -1,15 +1,29 @@
+/* eslint-disable no-lonely-if */
 const router = require('express').Router()
 const {Cart} = require('../db/models')
 
 // getting users cart or create it for logged in user
 router.get('/', async (req, res, next) => {
-  const [cart] = await Cart.findOrCreate({
-    where: {
-      isOrdered: false,
-      userId: req.user.id
+  if (req.user) {
+    const [cart] = await Cart.findOrCreate({
+      where: {
+        isOrdered: false,
+        userId: req.user.id
+      }
+    })
+    res.json(cart)
+  } else {
+    if (req.session.cart) {
+      // if req.session exists - check session for cart and response cart
+      res.json(req.session.cart)
+    } else {
+      // if not create new cart in session and response cart.
+      const newCart = await Cart.create()
+      console.log('NEW CART ', newCart)
+      req.session.cart = newCart
+      res.json(newCart)
     }
-  })
-  res.json(cart)
+  }
 })
 
 // create new cart for user
