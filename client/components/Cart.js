@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getOrders} from '../store/orders'
+import {getOrders, deleteOrder} from '../store/orders'
 import {getActiveCart, checkout} from '../store/carts'
 import {SinglePizza} from './index'
 
@@ -19,6 +19,11 @@ class Cart extends Component {
     this.props.history.push('/checkout')
   }
 
+  async handleRemoveClick(event, pizzaId) {
+    await this.props.fetchActiveCart()
+    this.props.deleteOrder(this.props.cart.id, pizzaId)
+  }
+
   render() {
     console.log(this.props.orders)
     if (this.props.orders) {
@@ -29,6 +34,12 @@ class Cart extends Component {
               <div key={idx}>
                 <SinglePizza pizza={order.pizza} />
                 <h2>Quantity: {order.qty}</h2>
+                <button
+                  type="button"
+                  onClick={() => this.handleRemoveClick(event, order.pizza.id)}
+                >
+                  Remove from Cart
+                </button>
               </div>
             )
           })}
@@ -51,7 +62,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   fetchOrders: cartId => dispatch(getOrders(cartId)),
   fetchActiveCart: () => dispatch(getActiveCart()),
-  finalCheckout: cartId => dispatch(checkout(cartId))
+  finalCheckout: cartId => dispatch(checkout(cartId)),
+  deleteOrder: (cartId, pizzaId) => dispatch(deleteOrder(cartId, pizzaId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

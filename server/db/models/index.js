@@ -3,11 +3,8 @@ const Pizza = require('./pizza')
 const Order = require('./order')
 const Cart = require('./cart')
 
-Order.belongsTo(Pizza)
 Pizza.hasMany(Order)
-
-User.hasMany(Order)
-Order.belongsTo(User)
+Order.belongsTo(Pizza)
 
 Cart.hasMany(Order)
 Order.belongsTo(Cart)

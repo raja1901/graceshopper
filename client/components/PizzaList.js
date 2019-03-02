@@ -39,12 +39,6 @@ class PizzaList extends Component {
               >
                 Add to Cart
               </button>
-              <button
-                type="button"
-                onClick={() => this.handleRemoveClick(event, pizza.id)}
-              >
-                Remove from Cart
-              </button>
             </div>
           )
         })}
