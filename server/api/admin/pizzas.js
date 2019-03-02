@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const {User, Pizza} = require('../db/models')
+const {Pizza} = require('../../db/models')
 module.exports = router
 
-router.post('/pizzas', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
       const {name, size, crust, imageUrl, price} = req.body
@@ -22,7 +22,7 @@ router.post('/pizzas', async (req, res, next) => {
   }
 })
 
-router.delete('/pizzas/:pizzaId', async (req, res, next) => {
+router.delete('/:pizzaId', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
       const {pizzaId} = req.params
@@ -40,7 +40,7 @@ router.delete('/pizzas/:pizzaId', async (req, res, next) => {
   }
 })
 
-router.put('/pizzas/:pizzaId', async (req, res, next) => {
+router.put('/:pizzaId', async (req, res, next) => {
   try {
     if (req.user.isAdmin) {
       const {name, imageUrl, price} = req.body
