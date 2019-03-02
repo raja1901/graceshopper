@@ -15,14 +15,14 @@ router.get('/:cartId', async (req, res, next) => {
   }
 })
 
-//addTo cart
+//addTo cart - /api/orders/cartId
 router.post('/:cartId', async (req, res, next) => {
   try {
-    const userId = req.user.id
+    //const userId = req.user.id
     const cartId = req.params.cartId
     const pizzaId = req.body.pizzaId
 
-    const temp = await Order.findOne({where: {userId, cartId, pizzaId}})
+    const temp = await Order.findOne({where: {cartId, pizzaId}})
     if (temp) {
       temp.qty = temp.qty + 1
       temp.save()
@@ -31,7 +31,7 @@ router.post('/:cartId', async (req, res, next) => {
       const item = await Order.create({
         qty: 1,
         pizzaId,
-        userId,
+        //userId,
         cartId
       })
       res.json(item)
