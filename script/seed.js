@@ -17,11 +17,11 @@ async function seed() {
       password: '123'
     }),
     User.create({
-      name: 'papa john',
+      name: 'admin',
       address: "papa's house",
       phone: '1234567890',
       favorite: 'chicken',
-      email: 'papa@email.com',
+      email: 'admin@admin.com',
       isAdmin: true,
       password: '123'
     })
