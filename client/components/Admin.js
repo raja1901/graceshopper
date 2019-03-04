@@ -1,19 +1,17 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {getUsers} from '../store/admin'
 
 class Admin extends Component {
-  constructor() {
-    super()
-  }
   componentDidMount() {
-    //fetch users
+    this.props.getUsers()
   }
   render() {
     return (
       <div>
         <h1>Welcome, {this.props.name}!</h1>
         <h3>{this.props.email}</h3>
-        {/* {Render users here in .map} */}
+        {this.props.users.map(user => <div key={user.id}>{user.name}</div>)}
       </div>
     )
   }
@@ -27,4 +25,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(Admin)
+export default connect(mapState, {getUsers})(Admin)
