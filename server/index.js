@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const chalk = require('chalk')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -26,7 +27,9 @@ if (process.env.NODE_ENV === 'test') {
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') {
+  require('../secrets')
+}
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -97,7 +100,7 @@ const createApp = () => {
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
   const server = app.listen(PORT, () =>
-    console.log(`Mixing it up on port ${PORT}`)
+    console.log(chalk.magenta(`%%%%%%%%%%% Mixing it up on port ${PORT}`))
   )
 
   // set up our socket control center

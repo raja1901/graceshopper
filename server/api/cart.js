@@ -1,6 +1,13 @@
 /* eslint-disable no-lonely-if */
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load()
+}
+
 const router = require('express').Router()
 const {Cart} = require('../db/models')
+
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
 // getting users cart or create it for logged in user
 router.get('/', async (req, res, next) => {
