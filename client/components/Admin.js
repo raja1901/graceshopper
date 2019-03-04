@@ -11,7 +11,22 @@ class Admin extends Component {
       <div>
         <h1>Welcome, {this.props.name}!</h1>
         <h3>{this.props.email}</h3>
-        {this.props.users.map(user => <div key={user.id}>{user.name}</div>)}
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Admin?</th>
+            </tr>
+            {this.props.users.map(user => (
+              <tr key={user.id}>
+                <td> {user.name}</td>
+                <td> {user.email}</td>
+                <td> {`${user.isAdmin}`}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     )
   }
