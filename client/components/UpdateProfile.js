@@ -13,12 +13,14 @@ class UpdateProfile extends Component {
   }
 
   handleChange(event) {
-    this.setState({name: event.target.value})
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    const updatedUser = {userId: this.props.user.id}
+    const updatedUser = {user: this.props.user}
     if (this.state.name) {
       updatedUser.name = this.state.name
     }
@@ -34,6 +36,7 @@ class UpdateProfile extends Component {
           Name:
           <input
             type="text"
+            placeholder={this.props.user.name}
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
