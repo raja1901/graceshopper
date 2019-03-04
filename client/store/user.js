@@ -56,6 +56,24 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const gotUser = userId => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/users/${userId}`)
+    dispatch(gotUser(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const updateUserProfile = updatedUser => async dispatch => {
+  try {
+    await axios.put(`/api/users/${updatedUser.id}`, updatedUser)
+    dispatch(gotUser())
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
