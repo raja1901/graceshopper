@@ -11,6 +11,7 @@ class Admin extends Component {
       <div>
         <h1>Welcome, {this.props.name}!</h1>
         <h3>{this.props.email}</h3>
+        <h4>Here is a list of users!</h4>
         <table>
           <tbody>
             <tr>
@@ -27,6 +28,11 @@ class Admin extends Component {
             ))}
           </tbody>
         </table>
+        <h4>Here is a list of Pizzas!</h4>
+
+        <div>
+          {this.props.pizzas.map(pizza => <p key={pizza.id}>{pizza.name}</p>)}
+        </div>
       </div>
     )
   }
@@ -36,7 +42,8 @@ const mapState = state => {
   return {
     name: state.user.name,
     email: state.user.email,
-    users: state.users
+    users: state.users,
+    pizzas: state.pizzas.allPizzas
   }
 }
 
