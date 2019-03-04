@@ -33,7 +33,7 @@ export const getUsers = () => async dispatch => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_USERS:
-      return [...state, ...action.payload]
+      return [...action.payload]
     default:
       return state
   }
