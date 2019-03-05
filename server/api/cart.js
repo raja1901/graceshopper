@@ -89,18 +89,18 @@ router.post('/:cartId/checkout', (req, res, next) => {
 // send all carts for order history
 router.get('/:userId', async (req, res, next) => {
   const userId = req.params.userId
-  // if (req.user) {
-  const orderHistory = await Cart.findAll({
-    include: [{model: Order, include: [{model: Pizza}]}],
-    where: {
-      isOrdered: true,
-      userId
-    }
-  })
-  res.json(orderHistory)
-  // } else {
-  //   res.redirect('/')
-  // }
+  if (req.user) {
+    const orderHistory = await Cart.findAll({
+      include: [{model: Order, include: [{model: Pizza}]}],
+      where: {
+        isOrdered: true,
+        userId
+      }
+    })
+    res.json(orderHistory)
+  } else {
+    res.redirect('/')
+  }
 })
 
 module.exports = router
