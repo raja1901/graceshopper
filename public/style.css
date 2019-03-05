@@ -31,3 +31,11 @@ form div {
   flex-wrap: wrap;
   align-items: center;
 }
+
+.thank-you {
+  display: flex;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  margin-top: -20vh;
+}

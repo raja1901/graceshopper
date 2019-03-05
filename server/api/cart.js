@@ -3,11 +3,12 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load()
 }
 
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+
 const router = require('express').Router()
 const {Cart} = require('../db/models')
-
-const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+const stripe = require('stripe')(stripeSecretKey)
+const {cyan, red} = require('chalk')
 
 // getting users cart or create it for logged in user
 router.get('/', async (req, res, next) => {
@@ -57,6 +58,28 @@ router.put('/:cartId/checkout', async (req, res, next) => {
         plain: true
       }
     )
+    res.status(204).send({})
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/:cartId/checkout', (req, res, next) => {
+  console.log('$$$$$$$$$$ REQ.BODY', req.body)
+  try {
+    const {amount, token} = req.body
+    const charge = stripe.charges.create(
+      {
+        amount,
+        source: token
+      },
+      function(err, charge) {
+        if (err && err.type === 'StripeCardError') {
+          console.log(red('Your card was declined!'))
+        }
+      }
+    )
+    console.log(cyan('Your payment was successful'))
     res.status(204).end()
   } catch (error) {
     next(error)
