@@ -12,8 +12,8 @@ class Cart extends Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
-  componentDidMount() {
-    this.props.fetchActiveCart()
+  async componentDidMount() {
+    await this.props.fetchActiveCart()
     this.props.fetchOrders(this.props.cart.id)
   }
 
@@ -40,14 +40,14 @@ class Cart extends Component {
   render() {
     return (
       <div>
-        {this.props.orders.map(order => {
+        {this.props.orders.map((order, idx) => {
           return (
-            <div key={order.pizza.id}>
+            <div key={idx}>
               <SinglePizza pizza={order.pizza} />
               <h2>Quantity: {order.qty}</h2>
               <button
                 type="button"
-                onClick={() => this.handleRemoveClick(event, order.pizza.id)}
+                onClick={() => this.handleRemoveClick(event, order.pizzaId)}
               >
                 Remove from Cart
               </button>

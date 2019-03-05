@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== 'production') {
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY
 
 const router = require('express').Router()
-const {Cart} = require('../db/models')
+const {Cart, Order, Pizza} = require('../db/models')
 const stripe = require('stripe')(stripeSecretKey)
 const {cyan, red} = require('chalk')
 
@@ -83,6 +83,23 @@ router.post('/:cartId/checkout', (req, res, next) => {
     res.status(204).end()
   } catch (error) {
     next(error)
+  }
+})
+
+// send all carts for order history
+router.get('/:userId', async (req, res, next) => {
+  const userId = req.params.userId
+  if (req.user) {
+    const orderHistory = await Cart.findAll({
+      include: [{model: Order, include: [{model: Pizza}]}],
+      where: {
+        isOrdered: true,
+        userId
+      }
+    })
+    res.json(orderHistory)
+  } else {
+    res.redirect('/')
   }
 })
 
