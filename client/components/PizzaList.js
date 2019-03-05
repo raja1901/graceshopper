@@ -28,11 +28,13 @@ class PizzaList extends Component {
 
   render() {
     return (
-      <div>
+      <div id="pizza-grid">
         {this.props.pizzas.map(pizza => {
           return (
-            <div key={pizza.id}>
-              <SinglePizza pizza={pizza} />
+            <div className="pizza-component" key={pizza.id}>
+              <div>
+                <SinglePizza pizza={pizza} />
+              </div>
               <button
                 type="button"
                 onClick={() => this.handleClick(event, pizza.id)}
