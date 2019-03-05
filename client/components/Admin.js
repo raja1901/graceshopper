@@ -1,10 +1,21 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getUsers} from '../store/admin'
+import {deletePizza} from '../store/pizzas'
+import {withRouter} from 'react-router-dom'
 
 class Admin extends Component {
+  constructor() {
+    super()
+    this.handleRemovePizza = this.handleRemovePizza.bind(this)
+  }
+
   componentDidMount() {
     this.props.getUsers()
+  }
+
+  handleRemovePizza(pizzaId) {
+    this.props.deletePizza(pizzaId)
   }
   render() {
     return (
@@ -31,7 +42,23 @@ class Admin extends Component {
         <h4>Here is a list of Pizzas!</h4>
 
         <div>
-          {this.props.pizzas.map(pizza => <p key={pizza.id}>{pizza.name}</p>)}
+          {this.props.pizzas.map(pizza => {
+            return (
+              <div key={pizza.id}>
+                <p>{pizza.name}</p>
+                <span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.handleRemovePizza(pizza.id)
+                    }}
+                  >
+                    Remove from Inventory
+                  </button>
+                </span>
+              </div>
+            )
+          })}
         </div>
       </div>
     )
@@ -47,4 +74,4 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState, {getUsers})(Admin)
+export default withRouter(connect(mapState, {getUsers, deletePizza})(Admin))
