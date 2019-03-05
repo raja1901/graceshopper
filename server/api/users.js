@@ -24,3 +24,28 @@ router.get('/', isAuthenticated, async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const {name, email, phone, address, favorite} = req.body
+    const [numOfUsers, updatedUser] = await User.update(
+      {
+        name,
+        email,
+        phone,
+        address,
+        favorite
+      },
+      {
+        where: {
+          id: req.params.userId
+        },
+        returning: true,
+        plain: true
+      }
+    )
+    res.json(updatedUser)
+  } catch (err) {
+    next(err)
+  }
+})
