@@ -40,9 +40,9 @@ class Cart extends Component {
   render() {
     return (
       <div>
-        {this.props.orders.map((order, idx) => {
+        {this.props.orders.map(order => {
           return (
-            <div key={idx}>
+            <div key={order.pizza.id}>
               <SinglePizza pizza={order.pizza} />
               <h2>Quantity: {order.qty}</h2>
               <button
