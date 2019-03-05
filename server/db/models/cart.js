@@ -5,6 +5,9 @@ const Cart = db.define('cart', {
   isOrdered: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
+  },
+  total: {
+    type: Sequelize.DECIMAL(5, 2)
   }
 })
 
