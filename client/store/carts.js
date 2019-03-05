@@ -32,7 +32,7 @@ export const getActiveCart = () => async dispatch => {
 
 export const checkout = cartId => async dispatch => {
   try {
-    axios.put(`/api/cart/${cartId}/checkout`)
+    const res = await axios.put(`/api/cart/${cartId}/checkout`)
   } catch (err) {
     console.error(err)
   }
