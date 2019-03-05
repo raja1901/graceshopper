@@ -3,11 +3,10 @@ import {connect} from 'react-redux'
 import {updateUserProfile} from '../store/user'
 
 class UpdateProfile extends Component {
-  constructor() {
-    super()
-    this.state = {
-      name: ''
-    }
+  constructor(props) {
+    super(props)
+    const {id, name, email, phone, address, favorite} = props.user
+    this.state = {id, name, email, phone, address, favorite}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -20,25 +19,58 @@ class UpdateProfile extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const updatedUser = {user: this.props.user}
-    if (this.state.name) {
-      updatedUser.name = this.state.name
-    }
+    const updatedUser = this.state
+
+    console.log('updatedUser ', updatedUser)
     this.props.updateUserProfile(updatedUser)
-    this.setState({name: ''})
+    // this.setState({name: ''})
   }
 
   render() {
-    console.log('Hello! ', this.props)
     return (
-      <form onSubmit={this.handlesubmit}>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Name:
           <input
             type="text"
-            placeholder={this.props.user.name}
             name="name"
             value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label>
+          Phone:
+          <input
+            type="text"
+            name="phone"
+            value={this.state.phone}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label>
+          Address:
+          <input
+            type="text"
+            name="address"
+            value={this.state.address}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label>
+          Favorite:
+          <input
+            type="text"
+            name="favorite"
+            value={this.state.favorite}
             onChange={this.handleChange}
           />
         </label>
