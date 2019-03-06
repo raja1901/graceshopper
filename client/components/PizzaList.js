@@ -7,7 +7,7 @@ import {getActiveCart} from '../store/carts'
 import Button from '@material-ui/core/Button'
 import SimpleSnackbar from './snackbars'
 
-class PizzaList extends Component {
+export class PizzaList extends Component {
   constructor() {
     super()
     this.handleRemoveClick = this.handleRemoveClick.bind(this)
