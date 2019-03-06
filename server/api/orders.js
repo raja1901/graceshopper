@@ -5,6 +5,10 @@ const {Order, Pizza} = require('../db/models')
 router.get('/:cartId', async (req, res, next) => {
   try {
     const cartId = req.params.cartId
+    if (req.session.cart && req.user) {
+      await Order.mergeCarts(cartId, req.session.cart.id)
+      req.session.cart = {}
+    }
     const orders = await Order.findAll({
       include: [{model: Pizza}],
       where: {cartId}
