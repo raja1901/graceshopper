@@ -8,8 +8,8 @@ const UserProfile = props => {
   const {user} = props
   return (
     <div>
+      <h1 className="title">Your Account Info</h1>
       <div>
-        <h3>Account Info</h3>
         <div>Name: {user.name}</div>
         <div>Email: {user.email}</div>
         <div>Phone: {user.phone}</div>

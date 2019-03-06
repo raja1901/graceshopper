@@ -51,12 +51,19 @@ class Cart extends Component {
   render() {
     return (
       <div id="checkout">
+        <h1 className="title">Your Cart</h1>
         {this.props.orders.map((order, idx) => {
           return (
             <div className="single-pizza" key={idx}>
-              <SinglePizza pizza={order.pizza} />
+              <div className="single-pizza-div">
+                <img className="pizza-img-cart" src={order.pizza.imageUrl} />
+              </div>
               <div>
-                <h3>Quantity: {order.qty}</h3>
+                <p>
+                  <strong>{order.pizza.name}</strong>
+                  <br />
+                  Quantity: {order.qty}
+                </p>
                 <Button
                   color="secondary"
                   size="small"

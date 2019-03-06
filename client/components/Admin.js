@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {getUsers} from '../store/admin'
 import {deletePizza} from '../store/pizzas'
 import {withRouter} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 class Admin extends Component {
   constructor() {
@@ -31,7 +33,7 @@ class Admin extends Component {
               <th>Admin?</th>
             </tr>
             {this.props.users.map(user => (
-              <tr key={user.id}>
+              <tr className="row" key={user.id}>
                 <td> {user.name}</td>
                 <td> {user.email}</td>
                 <td> {`${user.isAdmin}`}</td>
@@ -44,18 +46,18 @@ class Admin extends Component {
         <div>
           {this.props.pizzas.map(pizza => {
             return (
-              <div key={pizza.id}>
+              <div className="admin-pizza" key={pizza.id}>
+                <Button
+                  color="secondary"
+                  type="button"
+                  size="small"
+                  onClick={() => {
+                    this.handleRemovePizza(pizza.id)
+                  }}
+                >
+                  <DeleteIcon />
+                </Button>
                 <p>{pizza.name}</p>
-                <span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      this.handleRemovePizza(pizza.id)
-                    }}
-                  >
-                    Remove from Inventory
-                  </button>
-                </span>
               </div>
             )
           })}

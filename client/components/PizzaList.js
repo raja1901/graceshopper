@@ -23,21 +23,26 @@ export class PizzaList extends Component {
 
   render() {
     return (
-      <div id="pizza-grid">
-        {this.props.pizzas.map(pizza => {
-          return (
-            <div className="pizza-component" key={pizza.id}>
-              <div>
-                <SinglePizza pizza={pizza} />
+      <div>
+        <div id="pizza-title">
+          <h1 className="title">What are you craving?</h1>
+        </div>
+        <div id="pizza-grid">
+          {this.props.pizzas.map(pizza => {
+            return (
+              <div className="pizza-component" key={pizza.id}>
+                <div>
+                  <SinglePizza pizza={pizza} />
+                </div>
+                <SimpleSnackbar
+                  pizza={pizza}
+                  addOrder={this.props.addOrder}
+                  cartId={this.props.cartId}
+                />
               </div>
-              <SimpleSnackbar
-                pizza={pizza}
-                addOrder={this.props.addOrder}
-                cartId={this.props.cartId}
-              />
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     )
   }

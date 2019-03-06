@@ -27,6 +27,7 @@ class UpdateProfile extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h1 className="title">Update your account</h1>
         <TextField
           required
           id="standard-name"

@@ -12,6 +12,10 @@ body {
   padding: 2%;
 }
 
+.title {
+  font-family: 'Pacifico', cursive;
+}
+
 a {
   text-decoration: none;
 }
@@ -95,12 +99,26 @@ form div {
   margin-bottom: 3%;
 }
 
+#pizza-title {
+  display: flex;
+  justify-content: center;
+}
+
 /* Carts */
 
 #checkout {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* Cart */
+
+.pizza-img-cart {
+  height: auto;
+  width: auto;
+  max-width: 15vw;
+  max-height: 15vh;
 }
 
 /* OrderHistory */
@@ -131,6 +149,8 @@ td {
   background-color: #ffbcbcda;
 }
 
+/* Home */
+
 #home {
   font-family: 'Pacifico', cursive;
   font-size: 200%;
@@ -139,4 +159,11 @@ td {
   align-items: center;
   justify-content: center;
   padding: 10%;
+}
+
+/* Admin */
+
+.admin-pizza {
+  display: flex;
+  flex-direction: row;
 }
