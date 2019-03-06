@@ -5,9 +5,7 @@ import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import {createOrder} from '../store/orders'
-import {getActiveCart} from '../store/carts'
-import {connect} from 'react-redux'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 const styles = theme => ({
   close: {
@@ -39,10 +37,11 @@ class SimpleSnackbar extends React.Component {
       <div>
         <Button
           variant="contained"
+          size="small"
           color="secondary"
           onClick={this.handleClick}
         >
-          Add to Cart
+          Add {this.props.pizza.name} to <br /> <AddShoppingCartIcon />
         </Button>
         <Snackbar
           anchorOrigin={{

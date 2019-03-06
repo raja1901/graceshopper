@@ -3,12 +3,11 @@ import {connect} from 'react-redux'
 import {getOrders, deleteOrder} from '../store/orders'
 import {getActiveCart, checkout} from '../store/carts'
 import {SinglePizza} from './index'
-import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
-import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-class Cart extends Component {
+class GuestCart extends Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
@@ -19,9 +18,8 @@ class Cart extends Component {
     this.props.fetchOrders(this.props.cart.id)
   }
 
-  async handleClick() {
-    await this.props.finalCheckout(this.props.cart.id)
-    this.props.history.push('/checkout')
+  handleClick() {
+    this.props.history.push('/login')
   }
 
   async handleRemoveClick(event, pizzaId) {
@@ -47,7 +45,7 @@ class Cart extends Component {
             <div className="single-pizza" key={idx}>
               <SinglePizza pizza={order.pizza} />
               <div>
-                <h3>Quantity: {order.qty}</h3>
+                <h2>Quantity: {order.qty}</h2>
                 <Button
                   color="secondary"
                   size="small"
@@ -61,16 +59,13 @@ class Cart extends Component {
         })}
         <br />
         <div>
-          <StripeCheckout
-            token={this.onToken(2000)}
-            stripeKey="pk_test_KN3SFlFyjdQi4B6xdQfwy34w"
-            amount={2000}
-            name="Topper the mornin' to ya!"
-            image="/Grace Topper Checkout.png"
-            label="Buy These Pizzas"
-            panelLabel="Fork over"
-            currency="USD"
-          />
+          <Button
+            variant="contained"
+            // color="primary"
+            onClick={this.handleClick}
+          >
+            Please login to checkout
+          </Button>
         </div>
       </div>
     )
@@ -89,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
   deleteOrder: (cartId, pizzaId) => dispatch(deleteOrder(cartId, pizzaId))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps, mapDispatchToProps)(GuestCart)

@@ -3,8 +3,13 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: Futura;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 100;
+  line-height: 26.4px;
   background-color: #ffffff8c;
+  padding: 2%;
 }
 
 a {
@@ -69,6 +74,11 @@ form div {
   max-height: 30vh;
 }
 
+.single-pizza {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Pizza List */
 
 #pizza-grid {
@@ -79,6 +89,14 @@ form div {
 }
 
 .pizza-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Carts */
+
+#checkout {
   display: flex;
   flex-direction: column;
   align-items: center;

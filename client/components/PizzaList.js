@@ -4,7 +4,6 @@ import {getPizzas} from '../store/pizzas'
 import {SinglePizza} from './index'
 import {createOrder, deleteOrder} from '../store/orders'
 import {getActiveCart} from '../store/carts'
-import Button from '@material-ui/core/Button'
 import SimpleSnackbar from './snackbars'
 
 export class PizzaList extends Component {
@@ -35,16 +34,7 @@ export class PizzaList extends Component {
                 pizza={pizza}
                 addOrder={this.props.addOrder}
                 cartId={this.props.cartId}
-              >
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  type="button"
-                  onClick={() => this.handleClick(event, pizza.id)}
-                >
-                  Add to Cart
-                </Button>
-              </SimpleSnackbar>
+              />
             </div>
           )
         })}

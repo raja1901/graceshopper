@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {updateUserProfile} from '../store/user'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 class UpdateProfile extends Component {
   constructor(props) {
@@ -11,10 +13,8 @@ class UpdateProfile extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
+  handleChange = name => event => {
+    this.setState({[name]: event.target.value})
   }
 
   handleSubmit(event) {
@@ -29,52 +29,51 @@ class UpdateProfile extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label>
-          Phone:
-          <input
-            type="text"
-            name="phone"
-            value={this.state.phone}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label>
-          Address:
-          <input
-            type="text"
-            name="address"
-            value={this.state.address}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label>
-          Favorite:
-          <input
-            type="text"
-            name="favorite"
-            value={this.state.favorite}
-            onChange={this.handleChange}
-          />
-        </label>
-        <button type="submit">Update Your Profile!</button>
+        <TextField
+          required
+          id="standard-name"
+          label="Name"
+          value={this.state.name}
+          onChange={this.handleChange('name')}
+          margin="normal"
+        />
+        <br />
+        <TextField
+          required
+          id="standard-name"
+          label="Email"
+          value={this.state.email}
+          onChange={this.handleChange('email')}
+          margin="normal"
+        />
+        <br />
+        <TextField
+          id="standard-name"
+          label="Phone"
+          value={this.state.phone}
+          onChange={this.handleChange('phone')}
+          margin="normal"
+        />
+        <br />
+        <TextField
+          id="standard-name"
+          label="Address"
+          value={this.state.address}
+          onChange={this.handleChange('address')}
+          margin="normal"
+        />
+        <br />
+        <TextField
+          id="standard-name"
+          label="Favorite"
+          value={this.state.favorite}
+          onChange={this.handleChange('favorite')}
+          margin="normal"
+        />
+        <br />
+        <Button type="submit" variant="contained" color="primary" size="small">
+          Update Your Profile!
+        </Button>
       </form>
     )
   }

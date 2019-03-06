@@ -11,7 +11,8 @@ import {
   Checkout,
   UserProfile,
   UpdateProfile,
-  Admin
+  Admin,
+  GuestCart
 } from './components'
 import {me} from './store'
 
@@ -33,11 +34,12 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/allpizzas" component={PizzaList} />
-        <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/guestcart" component={GuestCart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route path="/cart" component={Cart} />
             <Route path="/home" component={UserHome} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/userprofile" component={UserProfile} />

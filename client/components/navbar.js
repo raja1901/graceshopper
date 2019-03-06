@@ -18,8 +18,8 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
             Logout
           </a>
           <div>
-            <Link to="/cart">Cart</Link>
             <Link to="/allpizzas">Pizzas</Link>
+            <Link to="/cart">Cart</Link>
           </div>
         </div>
       ) : (
@@ -28,7 +28,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
           <Link to="/allpizzas">Pizzas</Link>
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/guestcart">Cart</Link>
         </div>
       )}
       {isAdmin ? (
