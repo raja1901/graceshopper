@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import OrderHistory from './OrderHistory'
 
 const UserProfile = props => {
   const {user} = props
@@ -15,10 +16,10 @@ const UserProfile = props => {
         <div>Favorite: {user.favorite}</div>
         <div>
           <Link to="/updateprofile">Update Profile</Link>
-          <br />
-          <Link to="/orderhistory">Order History</Link>
         </div>
+        <br />
       </div>
+      <OrderHistory user={user} />
     </div>
   )
 }
