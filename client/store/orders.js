@@ -27,6 +27,7 @@ export const getOrders = cartId => async dispatch => {
 
 export const createOrder = (cartId, pizzaId) => async dispatch => {
   try {
+    console.log('thunk props', cartId, pizzaId)
     const {data} = await axios.post(`/api/orders/${cartId}`, {pizzaId})
     dispatch(addOrder(data))
   } catch (err) {
