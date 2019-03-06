@@ -6,7 +6,7 @@ import {createOrder, deleteOrder} from '../store/orders'
 import {getActiveCart} from '../store/carts'
 // import {withRouter} from 'react-router-dom'
 
-class PizzaList extends Component {
+export class PizzaList extends Component {
   constructor() {
     super()
     this.handleClick = this.handleClick.bind(this)
