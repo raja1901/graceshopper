@@ -9,14 +9,23 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button'
 
 class Cart extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      total: 0
+    }
     this.handleClick = this.handleClick.bind(this)
     this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
   async componentDidMount() {
     await this.props.fetchActiveCart()
-    this.props.fetchOrders(this.props.cart.id)
+    await this.props.fetchOrders(this.props.cart.id)
+    this.setState({
+      total: +this.props.orders.reduce(
+        (acc, currval) => acc + currval.pizza.price * currval.qty,
+        0
+      )
+    })
   }
 
   async handleClick() {
@@ -60,11 +69,12 @@ class Cart extends Component {
           )
         })}
         <br />
+        <h3>Total: {this.state.total}</h3>
         <div>
           <StripeCheckout
-            token={this.onToken(2000)}
+            token={this.onToken(this.state.total)}
             stripeKey="pk_test_KN3SFlFyjdQi4B6xdQfwy34w"
-            amount={2000}
+            amount={this.state.total * 100}
             name="Topper the mornin' to ya!"
             image="/Grace Topper Checkout.png"
             label="Buy These Pizzas"
