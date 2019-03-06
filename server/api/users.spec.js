@@ -22,15 +22,16 @@ describe('User routes', () => {
         email: codysEmail,
         address: "aman's backyard",
         phone: '1230984375',
-        password: '123'
+        password: '123',
+        isAdmin: true
       })
     })
 
-    xit('GET /api/users', async () => {
+    it('GET /api/users', async () => {
       const res = await request.get('/api/users').expect(401)
     })
 
-    it('should get users for a logged in user', async () => {
+    it('should get users for a logged in admin', async () => {
       await request
         .post('/auth/login')
         .send({email: codysEmail, password: '123'})

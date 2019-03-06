@@ -12,22 +12,21 @@ enzyme.configure({adapter})
 const pizzas = [{name: '1', imageUrl: ''}]
 
 describe('PizzaList', () => {
-  xit('renders a list of pizzas', () => {
+  it('renders an unordered list', () => {
     const wrapper = shallow(
       <PizzaList fetchPizzas={() => {}} pizzas={pizzas} />
     )
-    expect(wrapper.find('button')).to.have.length(1)
+    expect(wrapper.find('ul')).to.have.length(1)
   })
 
-  xit('renders an Add to Cart button for each pizza', () => {
+  it('renders all pizzas', () => {
     const wrapper = shallow(
       <PizzaList
         fetchPizzas={() => {}}
         pizzas={[{name: 'cheese'}, {name: 'pepperoni'}, {name: 'vegetarian'}]}
       />
     )
-    const listItems = wrapper.find('button')
+    const listItems = wrapper.find('li')
     expect(listItems).to.have.length(3)
-    expect(listItems.at(2).text()).to.contain('Add to Cart')
   })
 })
