@@ -12,14 +12,14 @@ enzyme.configure({adapter})
 const pizzas = [{name: '1', imageUrl: ''}]
 
 describe('PizzaList', () => {
-  it('renders a list of pizzas', () => {
+  xit('renders a list of pizzas', () => {
     const wrapper = shallow(
       <PizzaList fetchPizzas={() => {}} pizzas={pizzas} />
     )
     expect(wrapper.find('button')).to.have.length(1)
   })
 
-  it('renders an Add to Cart button for each pizza', () => {
+  xit('renders an Add to Cart button for each pizza', () => {
     const wrapper = shallow(
       <PizzaList
         fetchPizzas={() => {}}
