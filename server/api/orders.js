@@ -13,6 +13,7 @@ router.get('/:cartId', async (req, res, next) => {
       include: [{model: Pizza}],
       where: {cartId}
     })
+
     res.json(orders)
   } catch (err) {
     next(err)
