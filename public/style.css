@@ -130,3 +130,13 @@ td {
 .row:hover {
   background-color: #ffbcbcda;
 }
+
+#home {
+  font-family: 'Pacifico', cursive;
+  font-size: 200%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10%;
+}
