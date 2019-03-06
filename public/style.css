@@ -1,5 +1,6 @@
 html {
-  background-image: url('https://wallpapercave.com/wp/L7mMiel.jpg');
+  background-image: url('/GraceTopperWallpaper.png');
+  background-size: cover;
 }
 
 body {
@@ -8,7 +9,6 @@ body {
   font-variant: normal;
   font-weight: 100;
   line-height: 26.4px;
-  background-color: #ffffff8c;
   padding: 2%;
 }
 

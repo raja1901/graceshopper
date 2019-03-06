@@ -2,6 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import TextField from '@material-ui/core/TextField'
+import SvgIcon from '@material-ui/core/SvgIcon'
+import Button from '@material-ui/core/Button'
 
 /**
  * COMPONENT
@@ -12,24 +15,34 @@ const AuthForm = props => {
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
+        <TextField
+          required
+          type="text"
+          name="email"
+          id="standard-name"
+          label="email"
+          margin="normal"
+        />
+        <TextField
+          required
+          type="password"
+          name="password"
+          id="standard-name"
+          label="password"
+          margin="normal"
+        />
         <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
+          <Button type="submit" variant="contained" color="primary">
+            {displayName}&ensp;<SvgIcon>
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </SvgIcon>
+          </Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      <Button type="submit" variant="outlined" color="secondary">
+        <a href="/auth/google">{displayName} with Google</a>
+      </Button>
     </div>
   )
 }
