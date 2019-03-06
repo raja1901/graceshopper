@@ -24,10 +24,10 @@ export class PizzaList extends Component {
 
   render() {
     return (
-      <div id="pizza-grid">
+      <ul id="pizza-grid">
         {this.props.pizzas.map(pizza => {
           return (
-            <div className="pizza-component" key={pizza.id}>
+            <li className="pizza-component" key={pizza.id}>
               <div>
                 <SinglePizza pizza={pizza} />
               </div>
@@ -45,10 +45,10 @@ export class PizzaList extends Component {
                   Add to Cart
                 </Button>
               </SimpleSnackbar>
-            </div>
+            </li>
           )
         })}
-      </div>
+      </ul>
     )
   }
 }

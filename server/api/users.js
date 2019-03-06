@@ -5,9 +5,11 @@ module.exports = router
 // AUTHENTICATION FUNCTION
 function isAuthenticated(req, res, next) {
   if (req.user) {
-    return next()
+    if (req.user.isAdmin) {
+      return next()
+    }
   } else {
-    res.sendStatus(401).redirect('/')
+    res.sendStatus(401)
   }
 }
 

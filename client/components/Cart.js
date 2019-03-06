@@ -65,6 +65,7 @@ class Cart extends Component {
             label="Buy These Pizzas"
             panelLabel="Fork over"
             currency="USD"
+            bitcoin
           />
         </div>
       </div>
