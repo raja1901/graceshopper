@@ -13,7 +13,7 @@ body {
 }
 
 .title {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Vollkorn', serif;
 }
 
 a {
@@ -152,7 +152,7 @@ td {
 /* Home */
 
 #home {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Vollkorn', serif;
   font-size: 200%;
   display: flex;
   flex-direction: column;

@@ -27,10 +27,10 @@ export class PizzaList extends Component {
         <div id="pizza-title">
           <h1 className="title">What are you craving?</h1>
         </div>
-        <div id="pizza-grid">
+        <ul id="pizza-grid">
           {this.props.pizzas.map(pizza => {
             return (
-              <div className="pizza-component" key={pizza.id}>
+              <li className="pizza-component" key={pizza.id}>
                 <div>
                   <SinglePizza pizza={pizza} />
                 </div>
@@ -39,10 +39,10 @@ export class PizzaList extends Component {
                   addOrder={this.props.addOrder}
                   cartId={this.props.cartId}
                 />
-              </div>
+              </li>
             )
           })}
-        </div>
+        </ul>
       </div>
     )
   }

@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getOrders, deleteOrder} from '../store/orders'
 import {getActiveCart, checkout} from '../store/carts'
-import {SinglePizza} from './index'
 import StripeCheckout from 'react-stripe-checkout'
 import axios from 'axios'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -35,7 +34,13 @@ class Cart extends Component {
 
   async handleRemoveClick(event, pizzaId) {
     await this.props.fetchActiveCart()
-    this.props.deleteOrder(this.props.cart.id, pizzaId)
+    await this.props.deleteOrder(this.props.cart.id, pizzaId)
+    await this.setState({
+      total: +this.props.orders.reduce(
+        (acc, currval) => acc + currval.pizza.price * currval.qty,
+        0
+      )
+    })
   }
 
   onToken = amount => async token => {
@@ -76,13 +81,13 @@ class Cart extends Component {
           )
         })}
         <br />
-        <h3>Total: {this.state.total}</h3>
         <div>
           <StripeCheckout
+            disabled={this.state.total === 0}
             token={this.onToken(this.state.total)}
             stripeKey="pk_test_KN3SFlFyjdQi4B6xdQfwy34w"
             amount={this.state.total * 100}
-            name="Topper the mornin' to ya!"
+            name="Top it all off!"
             image="/Grace Topper Checkout.png"
             label="Buy These Pizzas"
             panelLabel="Fork over"

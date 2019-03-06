@@ -41,7 +41,7 @@ class SimpleSnackbar extends React.Component {
           color="secondary"
           onClick={this.handleClick}
         >
-          Add {this.props.pizza.name} to <br /> <AddShoppingCartIcon />
+          Add {this.props.pizza.name} &ensp;&ensp; <AddShoppingCartIcon />
         </Button>
         <Snackbar
           anchorOrigin={{
