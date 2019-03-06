@@ -23,10 +23,10 @@ class OrderHistory extends Component {
           </thead>
           <tbody>
             {this.props.orderHistory.map(history => {
-              return history.orders.map((order, idx) => {
+              return history.orders.map(order => {
                 return (
                   <tr className="row" key={order.id}>
-                    <td>{idx + 1}</td>
+                    <td>{history.id}</td>
                     <td>{order.pizza.name}</td>
                     <td>{order.qty}</td>
                     <td>

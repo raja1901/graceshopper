@@ -53,7 +53,7 @@ class Cart extends Component {
                   size="small"
                   onClick={() => this.handleRemoveClick(event, order.pizzaId)}
                 >
-                  <DeleteIcon /> {order.pizza.name}
+                  <DeleteIcon /> Remove
                 </Button>
               </div>
             </div>
