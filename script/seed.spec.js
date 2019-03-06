@@ -4,5 +4,7 @@
 const seed = require('./seed')
 
 describe('seed script', () => {
-  it('completes successfully', seed)
+  it('completes successfully', async () => {
+    await seed()
+  })
 })
