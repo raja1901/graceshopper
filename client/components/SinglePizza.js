@@ -5,9 +5,9 @@ const SinglePizza = props => {
     return <div>Please Wait</div>
   } else {
     return (
-      <div>
-        <h1>{props.pizza.name}</h1>
-        <img src={props.pizza.imageUrl} />
+      <div className="single-pizza-div">
+        <img className="pizza-img" src={props.pizza.imageUrl} />
+        <h3 className="pizza-name">{props.pizza.name}</h3>
       </div>
     )
   }

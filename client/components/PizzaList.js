@@ -4,21 +4,17 @@ import {getPizzas} from '../store/pizzas'
 import {SinglePizza} from './index'
 import {createOrder, deleteOrder} from '../store/orders'
 import {getActiveCart} from '../store/carts'
-// import {withRouter} from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import SimpleSnackbar from './snackbars'
 
 export class PizzaList extends Component {
   constructor() {
     super()
-    this.handleClick = this.handleClick.bind(this)
     this.handleRemoveClick = this.handleRemoveClick.bind(this)
   }
-  componentDidMount() {
-    this.props.fetchPizzas()
-  }
-
-  async handleClick(event, pizzaId) {
+  async componentDidMount() {
     await this.props.fetchActiveCart()
-    this.props.addOrder(this.props.cartId, pizzaId)
+    this.props.fetchPizzas()
   }
 
   async handleRemoveClick(event, pizzaId) {
@@ -28,17 +24,27 @@ export class PizzaList extends Component {
 
   render() {
     return (
-      <div>
+      <div id="pizza-grid">
         {this.props.pizzas.map(pizza => {
           return (
-            <div key={pizza.id}>
-              <SinglePizza pizza={pizza} />
-              <button
-                type="button"
-                onClick={() => this.handleClick(event, pizza.id)}
+            <div className="pizza-component" key={pizza.id}>
+              <div>
+                <SinglePizza pizza={pizza} />
+              </div>
+              <SimpleSnackbar
+                pizza={pizza}
+                addOrder={this.props.addOrder}
+                cartId={this.props.cartId}
               >
-                Add to Cart
-              </button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  type="button"
+                  onClick={() => this.handleClick(event, pizza.id)}
+                >
+                  Add to Cart
+                </Button>
+              </SimpleSnackbar>
             </div>
           )
         })}
