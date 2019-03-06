@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import OrderHistory from './OrderHistory'
+import Button from '@material-ui/core/Button'
 
 const UserProfile = props => {
   const {user} = props
@@ -15,7 +16,9 @@ const UserProfile = props => {
         <div>Address: {user.address}</div>
         <div>Favorite: {user.favorite}</div>
         <div>
-          <Link to="/updateprofile">Update Profile</Link>
+          <Button color="primary">
+            <Link to="/updateprofile">Update Profile</Link>
+          </Button>
         </div>
         <br />
       </div>

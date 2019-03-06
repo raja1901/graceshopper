@@ -17,13 +17,11 @@ class UpdateProfile extends Component {
     this.setState({[name]: event.target.value})
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
     const updatedUser = this.state
-
-    console.log('updatedUser ', updatedUser)
-    this.props.updateUserProfile(updatedUser)
-    // this.setState({name: ''})
+    await this.props.updateUserProfile(updatedUser)
+    this.props.history.push('/userprofile')
   }
 
   render() {
