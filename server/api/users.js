@@ -7,7 +7,7 @@ function isAuthenticated(req, res, next) {
   if (req.user) {
     return next()
   } else {
-    res.sendStatus(401).redirect('/')
+    res.status(401).redirect('/nope')
   }
 }
 
