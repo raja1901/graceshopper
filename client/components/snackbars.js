@@ -37,7 +37,11 @@ class SimpleSnackbar extends React.Component {
     const {classes} = this.props
     return (
       <div>
-        <Button variant="outlined" color="secondary" onClick={this.handleClick}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={this.handleClick}
+        >
           Add to Cart
         </Button>
         <Snackbar

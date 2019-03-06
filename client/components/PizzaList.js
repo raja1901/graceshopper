@@ -37,7 +37,7 @@ class PizzaList extends Component {
                 cartId={this.props.cartId}
               >
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   color="secondary"
                   type="button"
                   onClick={() => this.handleClick(event, pizza.id)}
